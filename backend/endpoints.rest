@@ -8,7 +8,7 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-    "username": "Pravir",
+    "username": "Rohil",
     "locationFrom": "LAX",
     "locationTo": "UCLA",
     "description": "Want to share an Uber!"
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 
-DELETE /feed/delete/6404f353de92afdb633f671a HTTP/1.1
+DELETE /feed/delete/6404feb3a0f83f06d1f27501 HTTP/1.1
 Host: localhost:8080
 
 {

@@ -47,11 +47,13 @@ app.get('/feed', async (req, res) => {
 // req res is express syntax!
 app.post('/feed/new', (req, res) => {
     const ride = new Ride({
+        date: req.body.date,
         time: req.body.time,
         username: req.body.username,
         locationFrom: req.body.locationFrom,
         locationTo: req.body.locationTo,
         description: req.body.description,
+        num_riders: req.body.num_riders,
     });
     ride.save();
     res.json(ride);
@@ -63,3 +65,4 @@ app.delete('/feed/delete/:id', async(req, res) => {
     await ride.remove();
     res.json(result);
 });
+

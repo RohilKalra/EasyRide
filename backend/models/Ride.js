@@ -26,8 +26,11 @@ const RideSchema = new Schema({
     description: {
         type: String,
         default: ""
+    },
+    num_riders: {
+        type: Number,
+        default: 1
     }
-
 });
 
 const Ride = mongoose.model("Ride", RideSchema);
