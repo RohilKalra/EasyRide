@@ -37,6 +37,10 @@ function Posts(props){
       })
       .catch(console.error)
   }
+
+  useEffect(() => { // tells react when we want React to call it (only when it initially loads)
+    getPosts();
+  }, [posts]);
   
   
   function addPost(){
@@ -69,11 +73,11 @@ function Posts(props){
       <input  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
       <input  type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
       <input  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
-   <button onClick={()=>{addPost();}}>Post</button>
+   <button onClick={()=>addPost()}>Post</button>
    
       {posts.map((post, i) => 
         <div key={i}>
-          <Posts user={username} locationFrom={locationFrom} time={time} locationTo={locationTo} date={date} num_riders={num_riders} description={description}/>
+          <Posts user={post.user} locationFrom={post.locationFrom} time={post.time} locationTo={post.locationTo} date={post.date} num_riders={post.num_riders} description={post.description}/>
         </div>        
       ).reverse()}
     </div>
