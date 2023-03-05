@@ -3,17 +3,21 @@ const Schema = mongoose.Schema;
 
 const RideSchema = new Schema({
     date: {
-        type: String,
-        default: "03/05/2023",
+        type: Date,
+        default: new Date("2023-03-10"),
     },
-    time: {
-        type: String,
-        default: "12:00"
-        // military time
-    },
+    // time: {
+    //     type: String,
+    //     default: "12:00"
+    //     // military time
+    // },
     username: {
         type: String,
         required: true
+    },
+    phone_number: {
+        type: Number,
+        default: 1111111111,
     },
     locationFrom: {
         type: String,

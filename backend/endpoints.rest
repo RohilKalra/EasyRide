@@ -3,25 +3,61 @@ Host: localhost:8080
 
 ###
 
-POST /feed/new HTTP/1.1
+POST /feed/post HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
 {
-    "username": "Rohil",
+    "date": "03/04/2023",
+    "time": "2:30",
+    "username": "Tim",
     "locationFrom": "LAX",
     "locationTo": "UCLA",
-    "description": "Want to share an Uber!"
+    "description": "Want to share an Uber!",
+    "phone_number": "6503034575"
 }
 
 ###
 
-DELETE /feed/delete/6404feb3a0f83f06d1f27501 HTTP/1.1
+DELETE /feed/delete/640508fccf3017f62e83dfd6 HTTP/1.1
 Host: localhost:8080
 
 {
-    "username": "Pravir",
-    "locationFrom": "LAX",
-    "locationTo": "UCLA",
-    "description": "Want to share an Uber!",
+    
+}
+
+###
+
+PUT /feed/put/6405098dcf3017f62e83dfda/increase HTTP/1.1
+Host: localhost:8080
+
+{
+
+}
+
+###
+
+GET /feed/getToLocation/UCSF HTTP/1.1
+Host: localhost:8080
+
+{
+
+}
+
+###
+
+GET /feed/getToLocation/UCSF HTTP/1.1
+Host: localhost:8080
+
+{
+
+}
+
+###
+
+GET /feed/getTimeWithinOneHour/1330 HTTP/1.1
+Host: localhost:8080
+
+{
+
 }
