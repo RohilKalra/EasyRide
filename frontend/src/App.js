@@ -73,7 +73,7 @@ function Posts(props){
    
       {posts.map((post, i) => 
         <div key={i}>
-          <Ride user={username} locationFrom={locationFrom} time={time} locationTo={locationTo} date={date} num_riders={num_riders} description={description}/>
+          <Posts user={username} locationFrom={locationFrom} time={time} locationTo={locationTo} date={date} num_riders={num_riders} description={description}/>
         </div>        
       ).reverse()}
     </div>
