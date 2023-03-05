@@ -8,7 +8,7 @@ function App(props) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
-  const [num_riders, setRiders] = useState("");
+  const [num_riders, setRiders] = useState();
   const [locationTo, setLocationTo] = useState("");
   const [username, setUsername] = useState("");
   const [locationFrom, setLocationFrom] = useState("");
@@ -21,10 +21,13 @@ function Posts(props){
   return(
     <div className='Posts'>
         <h3> {props.user} </h3>
-        <p> Date: {props.date} - Time: {props.time} </p>
-        <p>From: {props.locationFrom} - To: {props.locationTo}</p>
+        <div style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'30%'}}><p style={{float:'left'}}> Date: {props.date}</p>  <p style={{paddingLeft: '160px',float:'left'}}>Time: {props.time} </p></div>
+        <div style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'30%'}}>
+          <br/>
+        <div ><p style={{paddingTop:'20px'}}>From: {props.locationFrom} </p><p>To: {props.locationTo}</p></div>
         <p>Number of Riders: {props.num_riders}</p>
         <p>Description: {props.description}</p>
+        </div>
     </div>
   );
 }
@@ -44,7 +47,7 @@ function Posts(props){
       alert("Please provide input for all of the required fields.");
     }
     axios.post(URL + "/feed/new", {
-      time: time,
+      time: posts.time,
       username: username,
       date: date,
       description: description,
@@ -62,14 +65,14 @@ function Posts(props){
   return (
     <div>
       <h1>EasyRide</h1>
-      <input  type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Name:"></input>
-      <input  type="text" value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date:"></input>
-      <input  type="text" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Time:"></input>
-      <input  type="text" value={locationFrom} onChange={(e)=>setLocationFrom(e.target.value)} placeholder="Location from:"></input>
-      <input  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
-      <input  type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
-      <input  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
-   <button onClick={()=>{addPost();}}>Post</button>
+      <input style={{margin:'4px'}} type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Name:"></input>
+      <input style={{margin:'4px'}} type="text" value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date:"></input>
+      <input style={{margin:'4px'}}  type="text" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Time:"></input>
+      <input  style={{margin:'4px'}} type="text" value={locationFrom} onChange={(e)=>setLocationFrom(e.target.value)} placeholder="Location from:"></input>
+      <input style={{margin:'4px'}}  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
+      <input style={{margin:'4px'}} type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
+      <input style={{margin:'4px'}}  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
+   <br/><button onClick={()=>{addPost();}} style={{width:'600px', display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '40%', marginTop:'20px'}}>Post</button>
    
       {posts.map((post, i) => 
         <div key={i}>
