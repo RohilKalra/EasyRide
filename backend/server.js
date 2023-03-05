@@ -40,12 +40,11 @@ const Ride = require('./models/Ride'); // import our Ride schema
 // using express! -> gets all posts and returns all 
 app.get('/feed', async (req, res) => {
     const feed = await Ride.find(); // look at the collection that matches the post schema and get all of the results
-    
     res.json(feed); // once we are done, plug it into feed and store it into res with the JSON format
     
 });
 // req res is express syntax!
-app.post('/feed/new', (req, res) => {
+app.post('/feed/post', (req, res) => {
     const ride = new Ride({
         date: req.body.date,
         time: req.body.time,
@@ -54,6 +53,7 @@ app.post('/feed/new', (req, res) => {
         locationTo: req.body.locationTo,
         description: req.body.description,
         num_riders: req.body.num_riders,
+        phone_number: req.body.phone_number
     });
     ride.save();
     res.json(ride);
@@ -62,7 +62,40 @@ app.post('/feed/new', (req, res) => {
 app.delete('/feed/delete/:id', async(req, res) => {
     const rideId = req.params.id;
     let ride = await Ride.findById(rideId);
-    await ride.remove();
-    res.json(result);
+    await ride.deleteOne();
+    res.json({deleted: "succesful"});
 });
+
+app.put('/feed/put/:id/increase', async(req, res) => {
+    const rideId = req.params.id;
+    let ride = await Ride.findById(rideId);
+    ride.num_riders = ride.num_riders+1;
+    res.json(ride);
+});
+
+app.put('/feed/put/:id/decrease', async(req, res) => {
+    const rideId = req.params.id;
+    let ride = await Ride.findById(rideId);
+    ride.num_riders = ride.num_riders-1;
+    res.json(ride);
+});
+
+//finds all rides which are going to a location
+app.get('/feed/getToLocation/:toLocation', async(req,res) => {
+    const desiredLocation = req.params.toLocation;
+    const values = await Ride.find({locationTo : {$regex : desiredLocation}});
+    res.json(values);
+})
+
+app.get('/feed/getFromLocation/:FromLocation', async(req,res) => {
+    const desiredLocation = req.params.FromLocation;
+    const values = await Ride.find({locationTo : {$regex : desiredLocation}});
+    res.json(values);
+})
+
+app.get('/feed/getTimeWithinOneHour/:time', async(req,res) => {
+    let desiredTime = ParseInt(req.params.time);
+    const values = await Ride.find({time: { $gt : desiredTime-30, $lt : desiredTime+30}});
+    res.json(values);
+})
 

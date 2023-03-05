@@ -15,6 +15,10 @@ const RideSchema = new Schema({
         type: String,
         required: true
     },
+    phone_number: {
+        type: Number,
+        default: 1111111111,
+    },
     locationFrom: {
         type: String,
         required: true
