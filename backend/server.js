@@ -28,7 +28,7 @@ const app = express();
 app.use(express.json()); // when I'm receiving information, format it in the JSON format.
 app.use(cors());
 
-app.listen(8080, () => console.log('Server listening on port 8080')); // first parameter is port, second parameter is what to do after setup.
+app.listen(3002, () => console.log('Server listening on port 3002')); // first parameter is port, second parameter is what to do after setup.
 
 // mongoose specific
 
