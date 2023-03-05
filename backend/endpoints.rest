@@ -1,0 +1,28 @@
+GET /feed HTTP/1.1
+Host: localhost:8080
+
+###
+
+POST /feed/new HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "username": "Pravir",
+    "locationFrom": "LAX",
+    "locationTo": "UCLA",
+    "description": "Want to share an Uber!"
+}
+
+###
+
+DELETE /feed/delete/:_id HTTP/1.1
+Host: localhost:8080
+
+{
+    "username": "Pravir",
+    "locationFrom": "LAX",
+    "locationTo": "UCLA",
+    "description": "Want to share an Uber!",
+    "_id": "6404f353de92afdb633f671a"
+}
