@@ -8,9 +8,11 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-    "username": "Bonkeley",
+    "date": "03/04/2023",
+    "time": "2:30",
+    "username": "Tim",
     "locationFrom": "LAX",
-    "locationTo": "UCB",
+    "locationTo": "UCLA",
     "description": "Want to share an Uber!",
     "phone_number": "6503034575"
 }
@@ -36,6 +38,24 @@ Host: localhost:8080
 ###
 
 GET /feed/getToLocation/UCSF HTTP/1.1
+Host: localhost:8080
+
+{
+
+}
+
+###
+
+GET /feed/getToLocation/UCSF HTTP/1.1
+Host: localhost:8080
+
+{
+
+}
+
+###
+
+GET /feed/getTimeWithinOneHour/1330 HTTP/1.1
 Host: localhost:8080
 
 {

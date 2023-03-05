@@ -45,9 +45,18 @@ app.get('/feed', async (req, res) => {
 });
 // req res is express syntax!
 app.post('/feed/post', (req, res) => {
+    console.log("test!!!!!!!!!")
+    const hourMinuteArray = (req.body.time).split(":");
+    const hour = parseInt(hourMinuteArray[0]);
+    const minute = parseInt(hourMinuteArray[1]);
+
+    const monthDayYearArray = (req.body.date).split('/');
+    const month = parseInt(monthDayYearArray[0]);
+    const day = parseInt(monthDayYearArray[1]);
+    const year = parseInt(monthDayYearArray[2]);
+
     const ride = new Ride({
-        date: req.body.date,
-        time: req.body.time,
+        date: new Date(year,month,day,hour,minute),
         username: req.body.username,
         locationFrom: req.body.locationFrom,
         locationTo: req.body.locationTo,
@@ -55,6 +64,8 @@ app.post('/feed/post', (req, res) => {
         num_riders: req.body.num_riders,
         phone_number: req.body.phone_number
     });
+    console.log("test")
+    console.log(ride.date.toString());
     ride.save();
     res.json(ride);
 });
@@ -95,6 +106,12 @@ app.get('/feed/getFromLocation/:FromLocation', async(req,res) => {
 
 app.get('/feed/getTimeWithinOneHour/:time', async(req,res) => {
     let desiredTime = ParseInt(req.params.time);
+    let lowerBoundTime;
+    let upperBoundTime;
+
+    if(lowerBoundTime < 30) {
+       
+    }
     const values = await Ride.find({time: { $gt : desiredTime-30, $lt : desiredTime+30}});
     res.json(values);
 })
