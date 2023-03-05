@@ -58,6 +58,8 @@ app.post('/feed/new', (req, res) => {
 });
 
 app.delete('/feed/delete/:id', async(req, res) => {
-    const result = await Ride.findByIdAndDelete(req.params.id);
+    const rideId = req.params.id;
+    let ride = await Ride.findById(rideId);
+    await ride.remove();
     res.json(result);
 });

@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 
-DELETE /feed/delete/:_id HTTP/1.1
+DELETE /feed/delete/6404f353de92afdb633f671a HTTP/1.1
 Host: localhost:8080
 
 {
@@ -24,5 +24,4 @@ Host: localhost:8080
     "locationFrom": "LAX",
     "locationTo": "UCLA",
     "description": "Want to share an Uber!",
-    "_id": "6404f353de92afdb633f671a"
 }
