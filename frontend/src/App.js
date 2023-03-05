@@ -21,7 +21,7 @@ function Posts(props){
   return(
     <div className='Posts'>
         <h3> {props.user} </h3>
-        <p> Date: {props.date} - Time: {props.timestamp} </p>
+        <p> Date: {props.date} - Time: {props.time} </p>
         <p>From: {props.locationFrom} - To: {props.locationTo}</p>
         <p>Number of Riders: {props.num_riders}</p>
         <p>Description: {props.description}</p>
