@@ -1,135 +1,68 @@
+// express.js, will make working with apis easier (framework)
 const express = require('express');
+
+// require mongoose library (use require for node.js, import for other javascript situations)
 const mongoose = require('mongoose');
+
 const cors = require('cors');
+
+// please replace <username> and <password>!
+connection = "mongodb+srv://demo:1234@easyrideone.0gqx4ay.mongodb.net/?retryWrites=true&w=majority";
+
 mongoose.set('strictQuery', false);
 
+mongoose
+    .connect(connection,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }
+    ) 
+    .then(() => console.log("Connected to MongoDB")) 
+    .catch(console.error)
+;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const app = express();
-app.use(express.json());
+app.use(express.json()); // when I'm receiving information, format it in the JSON format.
 app.use(cors());
 
-// INIT CONNECTION
+app.listen(8080, () => console.log('Server listening on port 8080')); // first parameter is port, second parameter is what to do after setup.
 
-mongoose
-  .connect(
-    "mongodb+srv://demo:1234@app.zgawpvg.mongodb.net/?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => console.log('Connected to DB'))
-  .catch(console.error);
+// mongoose specific
 
-const Post = require('./models/post');
-const User = require('./models/user');
+// where we connect
 
-app.listen(3001, () => console.log('Server listening on port 3001: http://localhost:3001'));
+// add a post
+const Ride = require('./models/Ride'); // import our Ride schema
 
-// POSTS ENDPOINTS
-
-// Get posts feed
+// using express! -> gets all posts and returns all 
 app.get('/feed', async (req, res) => {
-  const feed = await Post.find();
-
-  res.json(feed);
+    const feed = await Ride.find(); // look at the collection that matches the post schema and get all of the results
+    
+    res.json(feed); // once we are done, plug it into feed and store it into res with the JSON format
+    
 });
-
-// Create new post
+// req res is express syntax!
 app.post('/feed/new', (req, res) => {
-  const post = new Post({
-      content: req.body.content,
-      user: req.body.user,
-      timestamp: Date.now(),
-  });
-
-  post.save();
-
-  res.json(post);
+    const ride = new Ride({
+        date: req.body.date,
+        time: req.body.time,
+        username: req.body.username,
+        locationFrom: req.body.locationFrom,
+        locationTo: req.body.locationTo,
+        description: req.body.description,
+        num_riders: req.body.num_riders,
+    });
+    ride.save();
+    res.json(ride);
 });
 
-// Edit post content
-app.put('/feed/edit/:_id', async (req, res) => {
-  const post = await Post.findById(req.params._id);
-
-  post.content = req.body.content;
-  post.save();
-
-  res.json(post);
+app.delete('/feed/delete/:id', async(req, res) => {
+    const rideId = req.params.id;
+    let ride = await Ride.findById(rideId);
+    await ride.remove();
+    res.json(result);
 });
 
-// Delete post
-app.delete('/feed/delete/:_id', async (req, res) => {
-  const result = await Post.findByIdAndDelete(req.params._id);
-
-  res.json(result);
-});
-
-// Like post
-app.put('/feed/like/:_id', async (req, res) => {
-  const post = await Post.findById(req.params._id);
-
-  post.num_likes++;
-  post.save();
-
-  res.json(post);
-});
-
-// USER ENDPOINTS
-
-// Get all users
-app.get('/users', async (req, res) => {
-  const users = await User.find();
-
-  res.json(users);
-});
-
-// Create new user 
-app.post('/users/new', async (req, res) => {
-  const dupUser = await User.findOne({ username: req.body.username });
-  if (dupUser) {
-    res.json({ 'error' : 'Duplicate username exists.'})
-    return;
-  }
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-  });
-
-  await user.save();
-
-  res.json(user);
-});
-
-// Delete user
-app.delete('/users/delete/:_id', async (req, res) => {
-  const result = await User.findByIdAndDelete(req.params._id);
-
-  res.json(result);
-});
-
-// Edit user information
-app.put('/users/edit/:_id', async (req, res) => {
-  const user = await User.findById(req.params._id);
-
-  user.username = req.body.username;
-  user.password = req.body.password;
-  user.save();
-
-  res.json(user);
-});
-
-// Log in user account
-app.post('/login', async (req, res) => {
-  const user = await User.findOne({ username: req.body.username });
-  if (!user) {
-    res.json({ 'error': 'That username doesn\'t exist'})
-    return;
-  }
-  
-  if (user.password === req.body.password) {
-    res.json(user);
-  }
-  else {
-    res.json({ 'error': 'Incorrect password'})
-  }
-});
