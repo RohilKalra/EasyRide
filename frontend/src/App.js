@@ -4,6 +4,8 @@ import axios from 'axios';
 const URL = "http://localhost:3002";
 
 function App(props) {
+
+
   
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -12,6 +14,16 @@ function App(props) {
   const [locationTo, setLocationTo] = useState("");
   const [username, setUsername] = useState("");
   const [locationFrom, setLocationFrom] = useState("");
+
+  function resetInput() {
+    setDate("");
+    setTime("");
+    setDescription("");
+    setRiders("");
+    setLocationTo("");
+    setLocationFrom("");
+    setUsername("");
+  }
 const [posts, setPosts] = useState([
   {
 
@@ -49,9 +61,10 @@ function Posts(props){
   function addPost(){
     if(username === "" || date === "" || time === "" || locationFrom === "" || locationTo === "" || num_riders === "" ){
       alert("Please provide input for all of the required fields.");
+      return;
     }
     axios.post(URL + "/feed/new", {
-      time: posts.time,
+      time: time,
       username: username,
       date: date,
       description: description,
@@ -63,6 +76,8 @@ function Posts(props){
       getPosts();
     })
     .catch(console.error);
+
+    resetInput();
   }
   
   useEffect(() => {}, [date, time, description, num_riders, locationFrom, locationTo, username]);

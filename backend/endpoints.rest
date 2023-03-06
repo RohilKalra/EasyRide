@@ -3,7 +3,7 @@ Host: localhost:8080
 
 ###
 
-POST /feed/post HTTP/1.1
+POST /feed/new HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 

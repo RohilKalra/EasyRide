@@ -45,7 +45,10 @@ app.get('/feed', async (req, res) => {
 });
 // req res is express syntax!
 app.post('/feed/new', (req, res) => {
-    console.log("test!!!!!!!!!")
+    // console.log("test!!!!!!!!!")
+    console.log("Time: " + req.body.time);
+    console.log('\n');
+    
     const hourMinuteArray = (req.body.time).split(":");
     const hour = parseInt(hourMinuteArray[0]);
     const minute = parseInt(hourMinuteArray[1]);
