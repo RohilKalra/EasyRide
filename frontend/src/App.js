@@ -83,7 +83,7 @@ const [posts, setPosts] = useState([
    
       {posts.map((post, i) => 
         <div key={i}>
-          <Posts user={post.user} locationFrom={post.locationFrom} time={post.time} locationTo={post.locationTo} date={post.dateString} num_riders={post.num_riders} description={post.description}/>
+          <Posts user={post.username} locationFrom={post.locationFrom} time={post.time} locationTo={post.locationTo} date={post.dateString} num_riders={post.num_riders} description={post.description}/>
         </div>        
       ).reverse()}
     </div>

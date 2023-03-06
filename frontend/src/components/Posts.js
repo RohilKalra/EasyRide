@@ -4,7 +4,7 @@ function Posts(props){
 
     return(
         <div className='Posts'>
-            <h3> {props.user} </h3>
+            <h3 style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'30%'}}> {props.user} </h3>
             <div style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'30%'}}><p style={{float:'left'}}> Date: {props.date}</p>  <p style={{paddingLeft: '160px',float:'left'}}>Time: {props.time} </p></div>
             <div style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'30%'}}>
             <br/>
