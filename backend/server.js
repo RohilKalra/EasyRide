@@ -47,8 +47,10 @@ app.get('/feed', async (req, res) => {
 app.post('/feed/new', (req, res) => {
     // console.log("test!!!!!!!!!")
     console.log("Time: " + req.body.time);
+    console.log("Date: " + req.body.date);
     console.log('\n');
-    
+
+
     const hourMinuteArray = (req.body.time).split(":");
     const hour = parseInt(hourMinuteArray[0]);
     const minute = parseInt(hourMinuteArray[1]);
@@ -59,7 +61,9 @@ app.post('/feed/new', (req, res) => {
     const year = parseInt(monthDayYearArray[2]);
 
     const ride = new Ride({
-        date: new Date(year,month,day,hour,minute),
+        date: req.body.date,
+        dateString: req.body.date.toString(),
+        time: req.body.time,
         username: req.body.username,
         locationFrom: req.body.locationFrom,
         locationTo: req.body.locationTo,
@@ -67,8 +71,9 @@ app.post('/feed/new', (req, res) => {
         num_riders: req.body.num_riders,
         phone_number: req.body.phone_number
     });
-    console.log("test")
+    console.log("test");
     console.log(ride.date.toString());
+    console.log(ride.time);
     ride.save();
     res.json(ride);
 });

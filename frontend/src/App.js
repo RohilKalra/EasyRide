@@ -7,8 +7,6 @@ import Posts from './components/Posts.js';
 
 function App(props) {
 
-
-  
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
@@ -42,7 +40,7 @@ const [posts, setPosts] = useState([
       .catch(console.error)
   }
 
-  useEffect(() => { // tells react when we want React to call it (only when it initially loads)
+  useEffect(() => { 
     getPosts();
   }, [posts]);
   
@@ -76,7 +74,7 @@ const [posts, setPosts] = useState([
       <input style={{margin:'4px'}} type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Name:"></input>
       <input style={{margin:'4px'}} type="text" value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date:"></input>
       <input style={{margin:'4px'}}  type="text" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Time:"></input>
-      <input  style={{margin:'4px'}} type="text" value={locationFrom} onChange={(e)=>setLocationFrom(e.target.value)} placeholder="Location from:"></input>
+      <input style={{margin:'4px'}} type="text" value={locationFrom} onChange={(e)=>setLocationFrom(e.target.value)} placeholder="Location from:"></input>
       <input style={{margin:'4px'}}  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
       <input style={{margin:'4px'}} type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
       <input style={{margin:'4px'}}  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
@@ -85,7 +83,7 @@ const [posts, setPosts] = useState([
    
       {posts.map((post, i) => 
         <div key={i}>
-          <Posts user={post.user} locationFrom={post.locationFrom} time={post.time} locationTo={post.locationTo} date={post.date} num_riders={post.num_riders} description={post.description}/>
+          <Posts user={post.user} locationFrom={post.locationFrom} time={post.time} locationTo={post.locationTo} date={post.dateString} num_riders={post.num_riders} description={post.description}/>
         </div>        
       ).reverse()}
     </div>
