@@ -82,7 +82,7 @@ app.delete('/feed/delete/:id', async(req, res) => {
     const rideId = req.params.id;
     let ride = await Ride.findById(rideId);
     await ride.deleteOne();
-    res.json({deleted: "succesful"});
+    res.json({deleted: "successful"});
 });
 
 app.put('/feed/put/:id/increase', async(req, res) => {

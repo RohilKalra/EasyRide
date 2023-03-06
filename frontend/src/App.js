@@ -78,7 +78,7 @@ const [posts, setPosts] = useState([
       <input style={{margin:'4px'}}  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
       <input style={{margin:'4px'}} type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
       <input style={{margin:'4px'}}  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
-   <br/><button onClick={()=>{addPost();}} style={{width:'600px', display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '40%', marginTop:'20px'}}>Post</button>
+   <br/><button onClick={()=>{addPost();}} style={{height:'40px',width:'100px', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop:'20px'}}>Post</button>
 
    
       {posts.map((post, i) => 
