@@ -46,16 +46,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"backend@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "backend@workspace:."
-  dependencies:
-    cors: ^2.8.5
-    express: ^4.18.2
-    mongoose: ^7.0.0
-  languageName: unknown
-  linkType: soft
-
 "body-parser@npm:1.20.1":
   version: 1.20.1
   resolution: "body-parser@npm:1.20.1"
@@ -584,6 +574,16 @@ __metadata:
   checksum: 5362adff1575d691bb3f75998803a0ffed8c64eabeaa06e54b4ada25a0cd1b2ae7f4f5ec46565d1bec337e08b5ac90c76eaa0758de6f72a633f025d754dec29e
   languageName: node
   linkType: hard
+
+"root-workspace-0b6124@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "root-workspace-0b6124@workspace:."
+  dependencies:
+    cors: ^2.8.5
+    express: ^4.18.2
+    mongoose: ^7.0.0
+  languageName: unknown
+  linkType: soft
 
 "safe-buffer@npm:5.2.1":
   version: 5.2.1
