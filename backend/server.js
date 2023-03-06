@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 // please replace <username> and <password>!
-connection = "mongodb+srv://demo:1234@easyrideone.0gqx4ay.mongodb.net/?retryWrites=true&w=majority";
+connection = "mongodb+srv://<username>:<password>@easyrideone.0gqx4ay.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.set('strictQuery', false);
 
