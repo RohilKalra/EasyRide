@@ -112,15 +112,53 @@ app.get('/feed/getFromLocation/:FromLocation', async(req,res) => {
     res.json(values);
 })
 
-app.get('/feed/getTimeWithinOneHour/:time', async(req,res) => {
-    let desiredTime = ParseInt(req.params.time);
-    let lowerBoundTime;
-    let upperBoundTime;
+app.get('/feed/getTimeWithinOneHour/:date/:time', async(req,res) => {
+    let thirtyMinsToMs = 30 * 60000; 
 
-    if(lowerBoundTime < 30) {
-       
+    const desiredDate = (req.params.date).split('-');
+    const month = parseInt(desiredDate[0]);
+    const day = parseInt(desiredDate[1]);
+    const year = parseInt(desiredDate[2]);
+
+    const desiredTime = (req.params.time).split(":");
+    const hour = parseInt(desiredTime[0]);
+    const minute = parseInt(desiredTime[1]);
+
+    let updatedBeforeHour;
+    let updatedBeforeMinute;
+    let updatedAfterHour;
+    let updatedAfterMinute;
+
+    if(minute < 30) {
+        updatedBeforeHour = hour - 1;
+        updatedBeforeMinute = 30 + minute;
+        updatedAfterHour = hour;
+        updatedAfterMinute = 30 + minute;
+    } else if(minute == 30) {
+        updatedBeforeHour = hour;
+        updatedBeforeMinute = 0;
+        updatedAfterHour = hour + 1;
+        updatedAfterMinute = 0;
+    } else {
+        updatedAfterHour = hour + 1;
+        updatedAfterMinute = minute - 30;
+        updatedBeforeHour = hour;
+        updatedBeforeMinute = minute - 30; 
     }
-    const values = await Ride.find({time: { $gt : desiredTime-30, $lt : desiredTime+30}});
+
+
+    const dateThirtyBefore = new Date(year,month,day,updatedBeforeHour,updatedBeforeMinute);
+    const dateThirtyAfter = new Date(year,month,day,updatedAfterHour,updatedAfterMinute);
+    console.log(dateThirtyBefore.toString());
+    console.log(dateThirtyAfter.toString());
+
+    const values = await Ride.find({date: { $gte : dateThirtyBefore, $lte : dateThirtyAfter}});
     res.json(values);
 })
+
+app.delete('/feed/deleteAll', async(req, res) => {
+    console.log("test");
+    await Ride.deleteMany();
+    res.json({message :'worked'});
+});
 
