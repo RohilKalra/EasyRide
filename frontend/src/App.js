@@ -71,14 +71,18 @@ const [posts, setPosts] = useState([
   return (
     <div>
       <h1 style={{textAlign:'center'}}>EasyRide</h1>
-      <input style={{margin:'4px'}} type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Name:"></input>
-      <input style={{margin:'4px'}} type="text" value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date:"></input>
-      <input style={{margin:'4px'}}  type="text" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Time:"></input>
-      <input style={{margin:'4px'}} type="text" value={locationFrom} onChange={(e)=>setLocationFrom(e.target.value)} placeholder="Location from:"></input>
-      <input style={{margin:'4px'}}  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
-      <input style={{margin:'4px'}} type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
-      <input style={{margin:'4px'}}  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
-   <br/><button onClick={()=>{addPost();}} style={{height:'40px',width:'100px', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop:'20px'}}>Post</button>
+      
+      <div class="inputFields">
+        <input style={{margin:'4px'}} type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Name:"></input>
+        <input style={{margin:'4px'}} type="text" value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date:"></input>
+        <input style={{margin:'4px'}}  type="text" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Time:"></input>
+        <input style={{margin:'4px'}} type="text" value={locationFrom} onChange={(e)=>setLocationFrom(e.target.value)} placeholder="Location from:"></input>
+        <input style={{margin:'4px'}}  type="text" value={locationTo} onChange={(e)=>setLocationTo(e.target.value)} placeholder="Location to:"></input>
+        <input style={{margin:'4px'}} type="text" value={num_riders} onChange={(e)=>setRiders(e.target.value)} placeholder="Number of riders:"></input>
+        <input style={{margin:'4px'}}  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} placeholder="Description:"></input>
+      </div>
+      
+      <br/><button onClick={()=>{addPost();}} style={{height:'40px',width:'100px', display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop:'20px'}}>Post</button>
 
    
       {posts.map((post, i) => 
