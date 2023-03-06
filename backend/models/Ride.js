@@ -6,11 +6,14 @@ const RideSchema = new Schema({
         type: Date,
         default: new Date("2023-03-10"),
     },
-    // time: {
-    //     type: String,
-    //     default: "12:00"
-    //     // military time
-    // },
+    dateString: {
+        type: String,
+        default: ""
+    },
+    time: {
+        type: String,
+        default: "12:00"
+    },
     username: {
         type: String,
         required: true

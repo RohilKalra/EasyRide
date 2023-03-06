@@ -1,6 +1,7 @@
 import {React} from "react";
 
 function Posts(props){
+
     return(
         <div className='Posts'>
             <h3> {props.user} </h3>
