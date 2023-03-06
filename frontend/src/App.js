@@ -72,7 +72,7 @@ const [posts, setPosts] = useState([
   useEffect(() => {}, [date, time, description, num_riders, locationFrom, locationTo, username]);
   return (
     <div>
-      <h1>EasyRide</h1>
+      <h1 style={{textAlign:'center'}}>EasyRide</h1>
       <input style={{margin:'4px'}} type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Name:"></input>
       <input style={{margin:'4px'}} type="text" value={date} onChange={(e)=>setDate(e.target.value)} placeholder="Date:"></input>
       <input style={{margin:'4px'}}  type="text" value={time} onChange={(e)=>setTime(e.target.value)} placeholder="Time:"></input>
