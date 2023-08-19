@@ -1,4 +1,4 @@
-# EasyRide
+# EasyRide (new and improved version is BruinCrusin)
 
 Project Submission for Hack on the Hill at UCLA. Built via the MERN stack, EasyRide strives to make carpooling via ridesharing apps easier.
 
